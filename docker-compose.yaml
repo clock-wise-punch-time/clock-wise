@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  db-ponto:
+    image: postgres
+    container_name: db-ponto
+    env_file:
+      - .env
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_ponto:/var/lib/postgresql/data/
+    networks:
+      - ponto-network
+volumes:
+  postgres_ponto:
+networks:
+  ponto-network:
+    name: ponto-network
