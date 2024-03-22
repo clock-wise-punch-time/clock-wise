@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 export class EndPunchClockDto {
   @IsNumber()
@@ -8,4 +8,8 @@ export class EndPunchClockDto {
   @IsDate()
   @IsNotEmpty()
   endTime: Date;
+
+  @IsNumber()
+  @IsOptional()
+  duration?: number;
 }

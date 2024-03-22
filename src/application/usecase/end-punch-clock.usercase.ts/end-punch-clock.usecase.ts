@@ -10,9 +10,20 @@ export class EndPunchClockUseCase {
   constructor(private readonly punchClockService: PunchClockService) {}
 
   async execute(id: number): Promise<PunchClockDto> {
+    const now = new Date();
+    const utcDate = new Date(
+      Date.UTC(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        now.getUTCHours(),
+        now.getUTCMinutes(),
+        now.getUTCSeconds(),
+      ),
+    );
     const inputData = {
       id,
-      endTime: new Date(),
+      endTime: utcDate,
     };
 
     const validatedData = plainToClass(EndPunchClockDto, inputData);

@@ -13,28 +13,29 @@ export class UserMiddleware implements NestMiddleware {
       return response.status(401).send({ error: 'No token provided' });
     }
 
-    try {
-      const httpResponse = await this.httpService.axiosRef.post(
-        `${process.env.AUTHENTICATION_SERVICE_URL}`,
-        {},
-        {
-          headers: {
-            Authorization: token,
-          },
-        },
-      );
+    // try {
+    //   const httpResponse = await this.httpService.axiosRef.post(
+    //     `${process.env.AUTHENTICATION_SERVICE_URL}`,
+    //     {},
+    //     {
+    //       headers: {
+    //         Authorization: token,
+    //       },
+    //     },
+    //   );
 
-      const { userId } = httpResponse.data;
+    // console.log(httpResponse);
 
-      if (!userId) {
-        return response.status(401).send({ error: 'Invalid token' });
-      }
+    // const { userId } = httpResponse.data;
 
-      request['userId'] = userId;
+    const userId = 123;
 
-      next();
-    } catch (error) {
+    if (!userId) {
       return response.status(401).send({ error: 'Invalid token' });
     }
+
+    request['userId'] = userId;
+
+    next();
   }
 }

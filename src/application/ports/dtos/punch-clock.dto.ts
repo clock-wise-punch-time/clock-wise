@@ -6,5 +6,6 @@ export interface PunchClockDto {
   date: Date;
   startTime: Date;
   endTime?: Date;
+  duration?: number;
   breaks: BreaksDto[];
 }

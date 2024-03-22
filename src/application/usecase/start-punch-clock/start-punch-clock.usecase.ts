@@ -12,6 +12,7 @@ export class StartPunchClockUseCase {
   async execute(userId: number): Promise<PunchClockDto> {
     const inputData = {
       userId,
+      date: new Date(),
       startTime: new Date(),
     };
 
