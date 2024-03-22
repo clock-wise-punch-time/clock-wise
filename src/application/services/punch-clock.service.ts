@@ -69,10 +69,9 @@ export class PunchClockService {
       new Date(validatedData.endTime).getTime() -
       punchClock.startTime.getTime();
 
-    const duration =
-      (totalWorkDuration - totalBreakDuration) / (1000 * 60 * 60);
-
-    console.log(duration);
+    const duration = parseFloat(
+      ((totalWorkDuration - totalBreakDuration) / (1000 * 60 * 60)).toFixed(2),
+    );
 
     return this.punchClockRepository.endPunchClock({
       ...validatedData,

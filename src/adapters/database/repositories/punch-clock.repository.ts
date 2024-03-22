@@ -77,6 +77,7 @@ export class PunchClockRepository implements IPunchClockRepositoryPort {
       },
       data: {
         endTime: punchClock.endTime,
+        duration: punchClock.duration,
       },
       include: {
         breaks: true,
