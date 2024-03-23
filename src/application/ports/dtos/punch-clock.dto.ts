@@ -1,4 +1,4 @@
-import { BreaksDto } from 'src/application/ports/dtos/breaks.dto';
+import { BreakDto } from 'src/application/ports/dtos/break.dto';
 
 export interface PunchClockDto {
   id: number;
@@ -7,5 +7,5 @@ export interface PunchClockDto {
   startTime: Date;
   endTime?: Date;
   duration?: number;
-  breaks: BreaksDto[];
+  breaks: BreakDto[];
 }

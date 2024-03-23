@@ -7,7 +7,7 @@ import {
   Req,
 } from '@nestjs/common';
 import { Request } from 'express';
-import { EndPunchClockUseCase } from 'src/application/usecase/end-punch-clock.usercase.ts/end-punch-clock.usecase';
+import { EndPunchClockUseCase } from 'src/application/usecase/end-punch-clock/end-punch-clock.usecase';
 import { GetPunchClockUseCase } from 'src/application/usecase/get-punch-clock/get-punch-clock.usecase';
 import { StartPunchClockUseCase } from 'src/application/usecase/start-punch-clock/start-punch-clock.usecase';
 
