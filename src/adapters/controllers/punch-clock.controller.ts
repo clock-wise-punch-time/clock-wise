@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  Body,
   Controller,
   Get,
   Param,
@@ -8,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { EndPunchClockUseCase } from 'src/application/usecase/end-punch-clock/end-punch-clock.usecase';
+import { GenerateReportUseCase } from 'src/application/usecase/generate-report/generate-report.usecase';
 import { GetPunchClockUseCase } from 'src/application/usecase/get-punch-clock/get-punch-clock.usecase';
 import { StartPunchClockUseCase } from 'src/application/usecase/start-punch-clock/start-punch-clock.usecase';
 
@@ -17,6 +19,7 @@ export class PunchClockController {
     private readonly startPunchClockUseCase: StartPunchClockUseCase,
     private readonly endPunchClockUseCase: EndPunchClockUseCase,
     private readonly getPunchClockUseCase: GetPunchClockUseCase,
+    private readonly generateReportUseCase: GenerateReportUseCase,
   ) {}
 
   @Post('start')
@@ -49,5 +52,21 @@ export class PunchClockController {
     const userId = req.userId;
 
     return this.getPunchClockUseCase.execute(Number(userId), date);
+  }
+
+  @Post('report')
+  async getPunchClockReport(
+    @Req() req: Request & { userId: string; email: string },
+    @Body() body: { startDate: Date; endDate: Date },
+  ) {
+    const userId = req.userId;
+    const email = req.email;
+
+    return this.generateReportUseCase.execute({
+      userId: Number(userId),
+      email,
+      initialDate: body.startDate,
+      finalDate: body.endDate,
+    });
   }
 }

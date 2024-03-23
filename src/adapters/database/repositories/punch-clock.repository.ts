@@ -10,6 +10,33 @@ import { IPunchClockRepositoryPort } from 'src/application/ports/repositories/pu
 export class PunchClockRepository implements IPunchClockRepositoryPort {
   constructor(private readonly prismaHelper: PrismaHelper) {}
 
+  async getPunchClockDataForReport(
+    userId: number,
+    initialDate: Date,
+    finalDate: Date,
+  ): Promise<PunchClockDto[]> {
+    const startDate = new Date(initialDate);
+    const endDate = new Date(finalDate);
+
+    startDate.setUTCHours(0, 0, 0, 0);
+    endDate.setUTCHours(23, 59, 59, 999);
+
+    const data = await this.prismaHelper.punchClock.findMany({
+      where: {
+        date: {
+          gte: startDate,
+          lt: endDate,
+        },
+        userId,
+      },
+      include: {
+        breaks: true,
+      },
+    });
+
+    return data.map((item) => PunchClockMapper.toResponse(item));
+  }
+
   async getPunchClock(userId: number, date: Date): Promise<PunchClockDto> {
     const startDate = new Date(date);
     const endDate = new Date(date);

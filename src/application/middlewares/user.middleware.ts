@@ -35,6 +35,7 @@ export class UserMiddleware implements NestMiddleware {
     }
 
     request['userId'] = userId;
+    request['email'] = process.env.SMTP_DEFAULT_EMAIL;
 
     next();
   }

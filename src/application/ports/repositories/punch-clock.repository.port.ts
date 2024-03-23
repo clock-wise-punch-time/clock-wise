@@ -7,4 +7,9 @@ export interface IPunchClockRepositoryPort {
   startPunchClock(punchClock: StartPunchClockDto): Promise<PunchClockDto>;
   endPunchClock(punchClock: EndPunchClockDto): Promise<PunchClockDto>;
   getPunchClock(userId: number, date: Date): Promise<PunchClockDto>;
+  getPunchClockDataForReport(
+    userId: number,
+    initialDate: Date,
+    finalDate: Date,
+  ): Promise<PunchClockDto[]>;
 }
