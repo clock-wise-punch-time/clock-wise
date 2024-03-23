@@ -14,16 +14,17 @@ datasource db {
 }
 
 model PunchClock {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   userId    Int
-  date      DateTime @default(now())
+  date      DateTime  @default(now())
   startTime DateTime
-  breaks     Break[]
+  breaks    Break[]
   endTime   DateTime?
+  duration  Int?
 }
 
 model Break {
-  id          Int       @id @default(autoincrement())
+  id           Int        @id @default(autoincrement())
   punchClockId Int
   startTime    DateTime
   endTime      DateTime?
