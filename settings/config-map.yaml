@@ -5,7 +5,7 @@ metadata:
   namespace: clock-wise
 data:
   POSTGRES_USER: "postgres"
-  POSTGRES_PASSWORD: "123"
+  POSTGRES_PASSWORD: "dVl9z8EZBR"
   POSTGRES_DB: "ponto_db"
   DATABASE_URL: "postgresql://postgres:dVl9z8EZBR@10.0.40.7:5432/ponto_db?schema=public"
   PORT: "3000"
