@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
-import { IGenerateReportDto } from "src/application/ports/dtos/generate-report.dto";
-import { PunchClockService } from "src/application/services/punch-clock.service";
+import { Injectable } from '@nestjs/common';
+import { IGenerateReportDto } from 'src/application/ports/dtos/generate-report.dto';
+import { PunchClockService } from 'src/application/services/punch-clock.service';
 
 @Injectable()
 export class GenerateReportUseCase {

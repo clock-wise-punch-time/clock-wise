@@ -4,22 +4,22 @@ import {
   Injectable,
   InternalServerErrorException,
   NotFoundException,
-} from "@nestjs/common";
-import { ICsvGenerator } from "src/application/ports/csv-generator/csv-generator.port";
-import { EndPunchClockDto } from "src/application/ports/dtos/end-punch-clock.dto";
-import { IGenerateReportDto } from "src/application/ports/dtos/generate-report.dto";
-import { StartPunchClockDto } from "src/application/ports/dtos/start-punch-clock.dto";
-import { IEmailSender } from "src/application/ports/emails/email-sender.port";
-import { IPunchClockRepositoryPort } from "src/application/ports/repositories/punch-clock.repository.port";
+} from '@nestjs/common';
+import { ICsvGenerator } from 'src/application/ports/csv-generator/csv-generator.port';
+import { EndPunchClockDto } from 'src/application/ports/dtos/end-punch-clock.dto';
+import { IGenerateReportDto } from 'src/application/ports/dtos/generate-report.dto';
+import { StartPunchClockDto } from 'src/application/ports/dtos/start-punch-clock.dto';
+import { IEmailSender } from 'src/application/ports/emails/email-sender.port';
+import { IPunchClockRepositoryPort } from 'src/application/ports/repositories/punch-clock.repository.port';
 
 @Injectable()
 export class PunchClockService {
   constructor(
-    @Inject("IPunchClockRepositoryPort")
+    @Inject('IPunchClockRepositoryPort')
     private readonly punchClockRepository: IPunchClockRepositoryPort,
-    @Inject("IEmailSenderPort")
+    @Inject('IEmailSenderPort')
     private readonly emailSender: IEmailSender,
-    @Inject("ICsvGeneratorPort")
+    @Inject('ICsvGeneratorPort')
     private readonly csvGenerator: ICsvGenerator,
   ) {}
 
@@ -42,7 +42,7 @@ export class PunchClockService {
     );
 
     if (punchClock) {
-      throw new BadRequestException("Punch clock already started");
+      throw new BadRequestException('Punch clock already started');
     }
 
     return this.punchClockRepository.startPunchClock(validatedData);
@@ -54,19 +54,19 @@ export class PunchClockService {
     );
 
     if (!punchClock) {
-      throw new NotFoundException("Punch clock not found");
+      throw new NotFoundException('Punch clock not found');
     }
 
     if (punchClock.endTime) {
-      throw new BadRequestException("Punch clock already ended");
+      throw new BadRequestException('Punch clock already ended');
     }
 
     const hasBreakWithoutEnd = punchClock.breaks.some(
-      breakItem => !breakItem.endTime,
+      (breakItem) => !breakItem.endTime,
     );
 
     if (hasBreakWithoutEnd) {
-      throw new BadRequestException("User has break without end");
+      throw new BadRequestException('User has break without end');
     }
 
     const totalBreakDuration = punchClock.breaks.reduce((acc, curr) => {
@@ -98,15 +98,15 @@ export class PunchClockService {
     email,
   }: IGenerateReportDto) {
     if (!userId) {
-      throw new NotFoundException("User not found");
+      throw new NotFoundException('User not found');
     }
 
     if (initialDate > finalDate) {
-      throw new BadRequestException("Initial date is greater than final date");
+      throw new BadRequestException('Initial date is greater than final date');
     }
 
     if (isNaN(initialDate.getTime()) || isNaN(finalDate.getTime())) {
-      throw new BadRequestException("Invalid date");
+      throw new BadRequestException('Invalid date');
     }
 
     const differenceInTime = finalDate.getTime() - initialDate.getTime();
@@ -114,7 +114,7 @@ export class PunchClockService {
 
     if (differenceInDays > 30) {
       throw new BadRequestException(
-        "The period between initial and final date cannot exceed 30 days",
+        'The period between initial and final date cannot exceed 30 days',
       );
     }
 
@@ -126,23 +126,23 @@ export class PunchClockService {
           finalDate,
         );
 
-      await this.csvGenerator.generateCsv(punchClocks, "punch-clocks.csv", [
-        { id: "id", title: "ID" },
-        { id: "userId", title: "User ID" },
-        { id: "date", title: "Date" },
-        { id: "startTime", title: "Start Time" },
-        { id: "endTime", title: "End Time" },
-        { id: "breaks", title: "Breaks" },
-        { id: "duration", title: "Duration" },
+      await this.csvGenerator.generateCsv(punchClocks, 'punch-clocks.csv', [
+        { id: 'id', title: 'ID' },
+        { id: 'userId', title: 'User ID' },
+        { id: 'date', title: 'Date' },
+        { id: 'startTime', title: 'Start Time' },
+        { id: 'endTime', title: 'End Time' },
+        { id: 'breaks', title: 'Breaks' },
+        { id: 'duration', title: 'Duration' },
       ]);
       await this.emailSender.sendEmail({
         to: email,
-        subject: "Punch Clock Report",
-        filePath: "punch-clocks.csv",
-        content: "Punch Clock Report",
+        subject: 'Punch Clock Report',
+        filePath: 'punch-clocks.csv',
+        content: 'Punch Clock Report',
       });
     } catch (error) {
-      throw new InternalServerErrorException("Error generating report");
+      throw new InternalServerErrorException('Error generating report');
     }
   }
 }

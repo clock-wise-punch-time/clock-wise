@@ -1,7 +1,7 @@
-import { MailerService } from "@nestjs-modules/mailer";
-import { Injectable } from "@nestjs/common";
-import { SendEmailDto } from "src/application/ports/dtos/send-email.dto";
-import { IEmailSender } from "src/application/ports/emails/email-sender.port";
+import { MailerService } from '@nestjs-modules/mailer';
+import { Injectable } from '@nestjs/common';
+import { SendEmailDto } from 'src/application/ports/dtos/send-email.dto';
+import { IEmailSender } from 'src/application/ports/emails/email-sender.port';
 
 @Injectable()
 export class EmailSenderService implements IEmailSender {
@@ -19,7 +19,7 @@ export class EmailSenderService implements IEmailSender {
       text: content,
       attachments: [
         {
-          filename: "punch-clock-report.csv",
+          filename: 'punch-clock-report.csv',
           path: filePath,
         },
       ],

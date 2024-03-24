@@ -1,6 +1,6 @@
-import { ICsvGenerator } from "src/application/ports/csv-generator/csv-generator.port";
-import { createObjectCsvWriter as createCsvWriter } from "csv-writer";
-import { ObjectHeaderItem } from "csv-writer/src/lib/record";
+import { ICsvGenerator } from 'src/application/ports/csv-generator/csv-generator.port';
+import { createObjectCsvWriter as createCsvWriter } from 'csv-writer';
+import { ObjectHeaderItem } from 'csv-writer/src/lib/record';
 
 export class CsvGeneratorService implements ICsvGenerator {
   generateCsv<T>(

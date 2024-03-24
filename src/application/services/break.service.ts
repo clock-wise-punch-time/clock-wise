@@ -1,12 +1,12 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { EndBreakDto } from "src/application/ports/dtos/end-break.dto";
-import { StartBreakDto } from "src/application/ports/dtos/start-break.dto";
-import { IBreakRepositoryPort } from "src/application/ports/repositories/break.repository.port";
+import { Inject, Injectable } from '@nestjs/common';
+import { EndBreakDto } from 'src/application/ports/dtos/end-break.dto';
+import { StartBreakDto } from 'src/application/ports/dtos/start-break.dto';
+import { IBreakRepositoryPort } from 'src/application/ports/repositories/break.repository.port';
 
 @Injectable()
 export class BreakService {
   constructor(
-    @Inject("IBreakRepositoryPort")
+    @Inject('IBreakRepositoryPort')
     private readonly breakRepository: IBreakRepositoryPort,
   ) {}
 
