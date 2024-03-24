@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clock-wise-config
+  namespace: clock-wise
+data:
+  POSTGRES_USER: "postgres"
+  POSTGRES_PASSWORD: "123"
+  POSTGRES_DB: "ponto_db"
+  DATABASE_URL: "postgresql://postgres:dVl9z8EZBR@clock-wise-postgres-postgresql:5432/ponto_db?schema=public"
+  PORT: "3010"
+  SMTP_HOST: "smtp.mailgun.org"
+  SMTP_PORT: "587"
+  SMTP_SECURE: "false"
+  SMTP_USER: "postmaster@sandbox4af0ef7b26ad40feaddb80a1ab786ca6.mailgun.org"
+  SMTP_PASS: "dda9103739fb97ff2abce61e6142143c-309b0ef4-3c7ae6a9"
+  SMTP_FROM: "PunchTime Report <noreply@clockwise-punchtime.com>"
+  SMTP_DEFAULT_EMAIL: "pedrohmarins@gmail.com"

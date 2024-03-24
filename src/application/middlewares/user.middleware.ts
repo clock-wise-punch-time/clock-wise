@@ -1,6 +1,6 @@
-import { HttpService } from '@nestjs/axios';
-import { Injectable, NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
+import { HttpService } from "@nestjs/axios";
+import { Injectable, NestMiddleware } from "@nestjs/common";
+import { Request, Response, NextFunction } from "express";
 
 @Injectable()
 export class UserMiddleware implements NestMiddleware {
@@ -10,7 +10,7 @@ export class UserMiddleware implements NestMiddleware {
     const token = request.headers.authorization;
 
     if (!token) {
-      return response.status(401).send({ error: 'No token provided' });
+      return response.status(401).send({ error: "No token provided" });
     }
 
     // try {
@@ -31,11 +31,11 @@ export class UserMiddleware implements NestMiddleware {
     const userId = 123;
 
     if (!userId) {
-      return response.status(401).send({ error: 'Invalid token' });
+      return response.status(401).send({ error: "Invalid token" });
     }
 
-    request['userId'] = userId;
-    request['email'] = process.env.SMTP_DEFAULT_EMAIL;
+    request["userId"] = userId;
+    request["email"] = process.env.SMTP_DEFAULT_EMAIL;
 
     next();
   }

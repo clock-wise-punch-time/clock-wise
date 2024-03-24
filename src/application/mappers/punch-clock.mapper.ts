@@ -1,5 +1,5 @@
-import { Break, PunchClock } from '@prisma/client';
-import { PunchClockDto } from 'src/application/ports/dtos/punch-clock.dto';
+import { Break, PunchClock } from "@prisma/client";
+import { PunchClockDto } from "src/application/ports/dtos/punch-clock.dto";
 
 export class PunchClockMapper {
   static toResponse(

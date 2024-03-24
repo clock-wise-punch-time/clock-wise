@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clock-wise
+  namespace: microservices
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clock-wise
+  template:
+    metadata:
+      labels:
+        app: clock-wise
+    spec:
+      containers:
+        - name: clock-wise
+          image: gfrancodev/clock-wise:latest
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.2"
+          ports:
+            - containerPort: 3000
+              name: http
+          envFrom:
+            - configMapRef:
+                name: clock-wise-config

@@ -1,9 +1,9 @@
-import { PrismaHelper } from 'src/adapters/database/helpers/prisma.helper';
-import { BreakMapper } from 'src/application/mappers/break.mapper';
-import { BreakDto } from 'src/application/ports/dtos/break.dto';
-import { EndBreakDto } from 'src/application/ports/dtos/end-break.dto';
-import { StartBreakDto } from 'src/application/ports/dtos/start-break.dto';
-import { IBreakRepositoryPort } from 'src/application/ports/repositories/break.repository.port';
+import { PrismaHelper } from "src/adapters/database/helpers/prisma.helper";
+import { BreakMapper } from "src/application/mappers/break.mapper";
+import { BreakDto } from "src/application/ports/dtos/break.dto";
+import { EndBreakDto } from "src/application/ports/dtos/end-break.dto";
+import { StartBreakDto } from "src/application/ports/dtos/start-break.dto";
+import { IBreakRepositoryPort } from "src/application/ports/repositories/break.repository.port";
 
 export class BreakRepository implements IBreakRepositoryPort {
   constructor(private readonly prismaHelper: PrismaHelper) {}

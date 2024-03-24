@@ -1,0 +1,29 @@
+name: clock-wise
+deployment:
+  replicaCount: 1
+image: gfrancodev/clock-wise:latest
+appPort: 3010
+srvPort: 80
+srvType: LoadBalancer
+
+configMapRef:
+  name: clock-wise-config
+secretRef:
+  name: clock-wise-secrets
+
+resources:
+  limits:
+    memory: 512Mi
+    cpu: "1"
+  requests:
+    memory: 256Mi
+    cpu: "0.2"
+
+hpa:
+  name: clock-wise-hpa
+  namespace: clock-wise
+  deploymentName: clock-wise
+  minReplicas: 1
+  maxReplicas: 10
+  cpuTargetAverageUtilization: 50
+  memoryTargetAverageUtilization: 50
