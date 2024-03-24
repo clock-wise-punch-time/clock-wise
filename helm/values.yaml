@@ -2,7 +2,7 @@ name: clock-wise
 deployment:
   replicaCount: 1
 image: gfrancodev/clock-wise:latest
-appPort: 3010
+appPort: 3000
 srvPort: 80
 srvType: LoadBalancer
 
