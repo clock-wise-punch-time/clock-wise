@@ -80,6 +80,7 @@ async function bootstrap() {
   const PORT = configService.get("PORT") ?? 3010;
   await app.listen(PORT, () => {
     logger.verbose(`
+
     //////////////////////////////
     //////////////////////////////
     //////////////////////////////
@@ -92,7 +93,9 @@ async function bootstrap() {
     /////////(%,,,,,,,,,%#(///////
     /////////////(((((////////////
     //////////////////////////////
+
             ⌚ CLOCK WISE
+            
     ✅ Available at the port ${PORT}
     🚀 Deploy to the ${process.env.NODE_ENV}
     `);
