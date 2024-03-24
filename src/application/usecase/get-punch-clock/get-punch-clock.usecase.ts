@@ -1,6 +1,6 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { PunchClockDto } from 'src/application/ports/dtos/punch-clock.dto';
-import { PunchClockService } from 'src/application/services/punch-clock.service';
+import { BadRequestException, Injectable } from "@nestjs/common";
+import { PunchClockDto } from "src/application/ports/dtos/punch-clock.dto";
+import { PunchClockService } from "src/application/services/punch-clock.service";
 
 @Injectable()
 export class GetPunchClockUseCase {
@@ -19,11 +19,11 @@ export class GetPunchClockUseCase {
     dateUtc.setUTCHours(0, 0, 0, 0);
 
     if (isNaN(dateUtc.getTime())) {
-      throw new BadRequestException('Invalid date');
+      throw new BadRequestException("Invalid date");
     }
 
     if (dateUtc > new Date()) {
-      throw new BadRequestException('Date cannot be greater than today');
+      throw new BadRequestException("Date cannot be greater than today");
     }
 
     return this.punchClockService.getPunchClock(userId, dateUtc);

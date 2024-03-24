@@ -1,15 +1,15 @@
-import { NestFactory, PartialGraphHost } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { Logger, ValidationPipe } from '@nestjs/common';
-import { PrismaHelper } from 'src/adapters/database/helpers/prisma.helper';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { useContainer } from 'class-validator';
-import { writeFileSync } from 'fs';
-import { ConfigService } from '@nestjs/config';
-import * as compression from 'compression';
-import helmet from 'helmet';
-import * as fs from 'fs';
-import { config } from 'dotenv';
+import { NestFactory, PartialGraphHost } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { Logger, ValidationPipe } from "@nestjs/common";
+import { PrismaHelper } from "src/adapters/database/helpers/prisma.helper";
+import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+import { useContainer } from "class-validator";
+import { writeFileSync } from "fs";
+import { ConfigService } from "@nestjs/config";
+import * as compression from "compression";
+import helmet from "helmet";
+import * as fs from "fs";
+import { config } from "dotenv";
 config();
 
 const logger = new Logger(bootstrap.name);
@@ -33,7 +33,7 @@ function generateKeys() {
 
 async function bootstrap() {
   generateKeys();
-  process.env.TZ = 'UTC';
+  process.env.TZ = "UTC";
   const app = await NestFactory.create(AppModule, {
     snapshot: true,
     cors: true,
@@ -47,13 +47,13 @@ async function bootstrap() {
   app.use(helmet());
 
   const config = new DocumentBuilder()
-    .setTitle('Punch Clock API')
-    .setDescription('The punch clock API')
-    .setVersion('1.0')
+    .setTitle("Punch Clock API")
+    .setDescription("The punch clock API")
+    .setVersion("1.0")
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup("api", app, document);
 
   app.get(PrismaHelper, { strict: false });
   app.enableShutdownHooks();
@@ -74,10 +74,10 @@ async function bootstrap() {
     process.kill(process.pid, signal);
   }
 
-  process.on('SIGINT', gracefulShutdown);
-  process.on('SIGTERM', gracefulShutdown);
+  process.on("SIGINT", gracefulShutdown);
+  process.on("SIGTERM", gracefulShutdown);
 
-  const PORT = configService.get('PORT') ?? 3010;
+  const PORT = configService.get("PORT") ?? 3010;
   await app.listen(PORT, () => {
     logger.verbose(`
     //////////////////////////////
@@ -99,11 +99,11 @@ async function bootstrap() {
   });
 }
 
-bootstrap().catch((err) => {
+bootstrap().catch(err => {
   try {
-    writeFileSync('graph.json', PartialGraphHost.toString() ?? '');
+    writeFileSync("graph.json", PartialGraphHost.toString() ?? "");
   } catch (error) {
-    logger.error('Error when trying to write graph.json.');
+    logger.error("Error when trying to write graph.json.");
     logger.error(error);
   }
   logger.error(err);

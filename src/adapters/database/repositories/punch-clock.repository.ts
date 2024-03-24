@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaHelper } from 'src/adapters/database/helpers/prisma.helper';
-import { PunchClockMapper } from 'src/application/mappers/punch-clock.mapper';
-import { EndPunchClockDto } from 'src/application/ports/dtos/end-punch-clock.dto';
-import { PunchClockDto } from 'src/application/ports/dtos/punch-clock.dto';
-import { StartPunchClockDto } from 'src/application/ports/dtos/start-punch-clock.dto';
-import { IPunchClockRepositoryPort } from 'src/application/ports/repositories/punch-clock.repository.port';
+import { Injectable } from "@nestjs/common";
+import { PrismaHelper } from "src/adapters/database/helpers/prisma.helper";
+import { PunchClockMapper } from "src/application/mappers/punch-clock.mapper";
+import { EndPunchClockDto } from "src/application/ports/dtos/end-punch-clock.dto";
+import { PunchClockDto } from "src/application/ports/dtos/punch-clock.dto";
+import { StartPunchClockDto } from "src/application/ports/dtos/start-punch-clock.dto";
+import { IPunchClockRepositoryPort } from "src/application/ports/repositories/punch-clock.repository.port";
 
 @Injectable()
 export class PunchClockRepository implements IPunchClockRepositoryPort {
@@ -34,7 +34,7 @@ export class PunchClockRepository implements IPunchClockRepositoryPort {
       },
     });
 
-    return data.map((item) => PunchClockMapper.toResponse(item));
+    return data.map(item => PunchClockMapper.toResponse(item));
   }
 
   async getPunchClock(userId: number, date: Date): Promise<PunchClockDto> {

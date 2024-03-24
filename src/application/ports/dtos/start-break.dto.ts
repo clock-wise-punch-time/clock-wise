@@ -1,9 +1,9 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsNotEmpty, IsNumber } from 'class-validator';
+import { ApiProperty } from "@nestjs/swagger";
+import { IsDate, IsNotEmpty, IsNumber } from "class-validator";
 
 export class StartBreakDto {
   @ApiProperty({
-    description: 'The id of the punch clock',
+    description: "The id of the punch clock",
     type: Number,
   })
   @IsNumber()
@@ -11,7 +11,7 @@ export class StartBreakDto {
   punchClockId: number;
 
   @ApiProperty({
-    description: 'The start time of the break',
+    description: "The start time of the break",
     type: Date,
   })
   @IsDate()

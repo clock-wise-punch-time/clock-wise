@@ -1,4 +1,4 @@
-import { Break } from '@prisma/client';
+import { Break } from "@prisma/client";
 
 export class BreakMapper {
   static toResponse(data: Break) {

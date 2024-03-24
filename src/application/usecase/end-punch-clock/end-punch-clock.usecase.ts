@@ -1,9 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { plainToClass } from 'class-transformer';
-import { validate } from 'class-validator';
-import { EndPunchClockDto } from 'src/application/ports/dtos/end-punch-clock.dto';
-import { PunchClockDto } from 'src/application/ports/dtos/punch-clock.dto';
-import { PunchClockService } from 'src/application/services/punch-clock.service';
+import { BadRequestException, Injectable } from "@nestjs/common";
+import { plainToClass } from "class-transformer";
+import { validate } from "class-validator";
+import { EndPunchClockDto } from "src/application/ports/dtos/end-punch-clock.dto";
+import { PunchClockDto } from "src/application/ports/dtos/punch-clock.dto";
+import { PunchClockService } from "src/application/services/punch-clock.service";
 
 @Injectable()
 export class EndPunchClockUseCase {
