@@ -342,4 +342,4 @@ Para facilitar a compreensão e o uso dos endpoints da nossa aplicação, dispon
 
 Para acessar a documentação Swagger da nossa aplicação, utilize o seguinte endereço no seu navegador:
 
-- **URL da Documentação Swagger**: `url_da_api/api`
+- **URL da Documentação Swagger **: `url_da_api/api`
