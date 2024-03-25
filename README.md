@@ -6,8 +6,10 @@
   </a>
 </p>
 
-<a href="http://172.212.113.11/v1">HOST API DE AUTENTICAÇÂO -> http://172.212.113.11</a><br><br>
-<a href="http://172.212.113.11/v1">HOST API DE PUNCH CLOCK -> http://172.212.123.219</a>
+<a href="http://172.212.113.11/v1">HOST API DE AUTENTICAÇÂO ➡️ http://172.212.113.11</a><br><br>
+<a href="http://172.212.113.11/v1">HOST API DE PUNCH CLOCK ➡️ http://172.212.123.219</a>
+
+<a href="https://github.com/clock-wise-punch-time/-clock-wise-auth">➡️ SERVIÇO DE AUTENTICAÇÃO</a>
 
 a Clock-Wise é uma ferramenta simples e eficaz para monitorar e gerenciar o tempo de trabalho dos funcionários, garantindo precisão e conformidade com as políticas da empresa e as leis trabalhistas.
 
