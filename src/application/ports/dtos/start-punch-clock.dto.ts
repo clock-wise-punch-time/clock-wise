@@ -1,13 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsNotEmpty, IsNumber } from "class-validator";
+import { IsDate, IsNotEmpty, IsString } from "class-validator";
 
 export class StartPunchClockDto {
   @ApiProperty({
     description: "The user id",
   })
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  userId: number;
+  userId: string;
 
   @ApiProperty({
     description: "The date",

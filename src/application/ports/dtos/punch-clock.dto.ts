@@ -10,7 +10,7 @@ export class PunchClockDto {
   @ApiProperty({
     description: "The user id",
   })
-  userId: number;
+  userId: string;
 
   @ApiProperty({
     description: "The date",

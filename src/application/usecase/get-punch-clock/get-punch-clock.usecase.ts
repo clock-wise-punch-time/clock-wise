@@ -6,7 +6,7 @@ import { PunchClockService } from "src/application/services/punch-clock.service"
 export class GetPunchClockUseCase {
   constructor(private readonly punchClockService: PunchClockService) {}
 
-  async execute(userId: number, date: Date): Promise<PunchClockDto> {
+  async execute(userId: string, date: Date): Promise<PunchClockDto> {
     const dateReceived = new Date(date);
     const dateUtc = new Date(
       Date.UTC(

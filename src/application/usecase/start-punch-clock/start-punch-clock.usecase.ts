@@ -9,7 +9,7 @@ import { PunchClockService } from "src/application/services/punch-clock.service"
 export class StartPunchClockUseCase {
   constructor(private readonly punchClockService: PunchClockService) {}
 
-  async execute(userId: number): Promise<PunchClockDto> {
+  async execute(userId: string): Promise<PunchClockDto> {
     const inputData = {
       userId,
       date: new Date(),

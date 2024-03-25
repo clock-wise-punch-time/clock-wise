@@ -87,7 +87,7 @@ export class PunchClockService {
     });
   }
 
-  async getPunchClock(userId: number, date: Date) {
+  async getPunchClock(userId: string, date: Date) {
     return this.punchClockRepository.getPunchClock(userId, date);
   }
 

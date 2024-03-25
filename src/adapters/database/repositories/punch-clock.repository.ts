@@ -11,7 +11,7 @@ export class PunchClockRepository implements IPunchClockRepositoryPort {
   constructor(private readonly prismaHelper: PrismaHelper) {}
 
   async getPunchClockDataForReport(
-    userId: number,
+    userId: string,
     initialDate: Date,
     finalDate: Date,
   ): Promise<PunchClockDto[]> {
@@ -37,7 +37,7 @@ export class PunchClockRepository implements IPunchClockRepositoryPort {
     return data.map(item => PunchClockMapper.toResponse(item));
   }
 
-  async getPunchClock(userId: number, date: Date): Promise<PunchClockDto> {
+  async getPunchClock(userId: string, date: Date): Promise<PunchClockDto> {
     const startDate = new Date(date);
     const endDate = new Date(date);
 

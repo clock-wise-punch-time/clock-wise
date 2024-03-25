@@ -1,5 +1,5 @@
 export interface IGenerateReportDto {
-  userId: number;
+  userId: string;
   email: string;
   initialDate: Date;
   finalDate: Date;

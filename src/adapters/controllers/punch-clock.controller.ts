@@ -16,7 +16,6 @@ import {
   ApiOkResponse,
   ApiTags,
 } from "@nestjs/swagger";
-import { Request } from "express";
 import { EndPunchClockDto } from "src/application/ports/dtos/end-punch-clock.dto";
 import { PunchClockDto } from "src/application/ports/dtos/punch-clock.dto";
 import { StartPunchClockDto } from "src/application/ports/dtos/start-punch-clock.dto";
@@ -24,6 +23,7 @@ import { EndPunchClockUseCase } from "src/application/usecase/end-punch-clock/en
 import { GenerateReportUseCase } from "src/application/usecase/generate-report/generate-report.usecase";
 import { GetPunchClockUseCase } from "src/application/usecase/get-punch-clock/get-punch-clock.usecase";
 import { StartPunchClockUseCase } from "src/application/usecase/start-punch-clock/start-punch-clock.usecase";
+import { RequestUser } from "src/core/types/request.types";
 @ApiTags("punch-clock")
 @ApiBasicAuth()
 @Controller("v1/punch-clock")
@@ -43,9 +43,9 @@ export class PunchClockController {
   @ApiBadRequestResponse({
     description: "Validation Error",
   })
-  async startPunchClock(@Req() req: Request & { userId: string }) {
-    const userId = req.userId;
-    return this.startPunchClockUseCase.execute(Number(userId));
+  async startPunchClock(@Req() req: RequestUser) {
+    const userId = req?.user?.user_id;
+    return this.startPunchClockUseCase.execute(String(userId));
   }
 
   @Post("end/:id")
@@ -71,10 +71,10 @@ export class PunchClockController {
   @ApiBadRequestResponse({
     description: "Validation Error",
   })
-  async getPunchClock(@Req() req: Request & { userId: string }) {
-    const userId = req.userId;
+  async getPunchClock(@Req() req: RequestUser) {
+    const userId = req?.user?.user_id;
 
-    return this.getPunchClockUseCase.execute(Number(userId), new Date());
+    return this.getPunchClockUseCase.execute(userId, new Date());
   }
 
   @Get("/:date")
@@ -86,16 +86,16 @@ export class PunchClockController {
     description: "Validation Error",
   })
   async getPunchClockByDate(
-    @Req() req: Request & { userId: string },
+    @Req() req: RequestUser,
     @Param("date") date: Date,
   ) {
     if (!date) {
       throw new BadRequestException("Date is required");
     }
 
-    const userId = req.userId;
+    const userId = req?.user?.user_id;
 
-    return this.getPunchClockUseCase.execute(Number(userId), date);
+    return this.getPunchClockUseCase.execute(String(userId), date);
   }
 
   @Post("report")
@@ -112,14 +112,14 @@ export class PunchClockController {
     description: "Internal server error",
   })
   async getPunchClockReport(
-    @Req() req: Request & { userId: string; email: string },
+    @Req() req: RequestUser & { email: string },
     @Body() body: { startDate: Date; endDate: Date },
   ) {
-    const userId = req.userId;
-    const email = req.email;
+    const userId = req?.user?.user_id;
+    const email = process.env.SMTP_DEFAULT_EMAIL;
 
     return this.generateReportUseCase.execute({
-      userId: Number(userId),
+      userId: String(userId),
       email,
       initialDate: body.startDate,
       finalDate: body.endDate,
